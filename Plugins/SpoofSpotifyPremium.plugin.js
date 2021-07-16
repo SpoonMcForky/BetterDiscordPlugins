@@ -33,13 +33,13 @@ var SpoofSpotifyPremium = (() => {
                     return class Spoof extends Plugin {
                         onStart() {
                     
-                            Patcher.BdApi.findModuleByProps("getProfile").getProfile, async function (args) {
-                                Patcher.BdApi.findModuleByProps("isSpotifyPremium").isSpotifyPremium, async function (_) {
-                                    return true;
+                            Patcher.BdApi.findModuleByProps("getProfile").getProfile, (args) =>
+                                
+                                dispatcher.dispatch({
+                                    type: 'SPOTIFY_PROFILE_UPDATE', accountId: args[0], isPremium: true
+                                });
+                                Patcher.BdApi.findModuleByProps("isSpotifyPremium").isSpotifyPremium, () => true; {
                                 }
-                                dispatcher.dispatch({ type: 'SPOTIFY_PROFILE_UPDATE', accountId: args[0], isPremium: true });
-                                return;
-                            }
     
                         };
                         onStop() {
