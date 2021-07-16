@@ -6,7 +6,8 @@
 */
 
 module.exports = class DisableGate {
-start() 
-{ BdApi.findModuleByProps("getCurrentUser").getCurrentUser().nsfwAllowed = true }
+start() { 
+  BdApi.findModuleByProps("getCurrentUser").getCurrentUser().nsfwAllowed = true
+}
 stop() { }
 };
