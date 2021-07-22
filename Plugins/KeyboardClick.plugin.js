@@ -1,8 +1,8 @@
 /**
  * @name KeyboardClick
  * @author SpoonMcForky
- * @description troll
- * @version 0.0.1
+ * @description Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)
+ * @version 1.0.0
  */
 
  module.exports = class Click {
