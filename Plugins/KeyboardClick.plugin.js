@@ -6,10 +6,8 @@
  */
 
  module.exports = class Click {
-    
-    load() {} // Optional function. Called when the plugin is loaded in to memory
 
-    start() {  // Required function. Called when the plugin is activated (including after reloads)
+    start() {
         var click1 = new Audio('https://dl.dropboxusercontent.com/s/g5flhi55n89c9um/click1.wav?raw=1');
         var click2 = new Audio('https://dl.dropboxusercontent.com/s/w0s9peh6kif3hce/click2.wav?raw=1');
         var click3 = new Audio('https://dl.dropboxusercontent.com/s/3xu1tfg8iln3uil/click3.wav?raw=1');
@@ -29,7 +27,5 @@
         }
          
      }
-    stop() {} // Required function. Called when the plugin is deactivated
-
-    observer(changes) {} // Optional function. Observer for the `document`. Better documentation than I can provide is found here: <https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver>
+    stop() {}
 };
