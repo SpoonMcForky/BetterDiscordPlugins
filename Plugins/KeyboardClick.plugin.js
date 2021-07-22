@@ -8,9 +8,9 @@
  module.exports = class Click {
 
     start() {
-        var click1 = new Audio('https://dl.dropboxusercontent.com/s/g5flhi55n89c9um/click1.wav?raw=1');
-        var click2 = new Audio('https://dl.dropboxusercontent.com/s/w0s9peh6kif3hce/click2.wav?raw=1');
-        var click3 = new Audio('https://dl.dropboxusercontent.com/s/3xu1tfg8iln3uil/click3.wav?raw=1');
+        var click1 = new Audio('https://dl.dropboxusercontent.com/s/vfxrfu2u8jiq6xw/click1.wav?raw=1');
+        var click2 = new Audio('https://dl.dropboxusercontent.com/s/wtw25tzfctkpers/click2.wav?raw=1');
+        var click3 = new Audio('https://dl.dropboxusercontent.com/s/kqjn62hwk035d2w/click3.wav?raw=1');
         document.addEventListener('keydown', playSound);
 
         function playSound() {
