@@ -1,8 +1,8 @@
 /**
  * @name KeyboardClick
  * @author SpoonMcForky
- * @description Plays keyboard click sounds like OperaGX
- * @version 1.0.0
+ * @description troll
+ * @version 0.0.1
  */
 
  module.exports = class Click {
@@ -10,9 +10,9 @@
     load() {} // Optional function. Called when the plugin is loaded in to memory
 
     start() {  // Required function. Called when the plugin is activated (including after reloads)
-        var click1 = new Audio('https://cdn.discordapp.com/attachments/613540326019432458/867828171739365376/EXmZ1MmEb9fS.mp3');
-        var click2 = new Audio('https://cdn.discordapp.com/attachments/613540326019432458/867828173776879616/CwA6AeGaM7Eh.mp3');
-        var click3 = new Audio('https://cdn.discordapp.com/attachments/613540326019432458/867828175177646140/VUi0jd5vrhLg.mp3');
+        var click1 = new Audio('https://dl.dropboxusercontent.com/s/g5flhi55n89c9um/click1.wav?raw=1');
+        var click2 = new Audio('https://dl.dropboxusercontent.com/s/w0s9peh6kif3hce/click2.wav?raw=1');
+        var click3 = new Audio('https://dl.dropboxusercontent.com/s/3xu1tfg8iln3uil/click3.wav?raw=1');
         document.addEventListener('keydown', playSound);
 
         function playSound() {
