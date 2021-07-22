@@ -1,8 +1,8 @@
 /**
  * @name KeyboardClick
  * @author SpoonMcForky
- * @description troll
- * @version 0.0.1
+ * @description Plays keyboard click sounds like OperaGX
+ * @version 1.0.0
  */
 
  module.exports = class Click {
