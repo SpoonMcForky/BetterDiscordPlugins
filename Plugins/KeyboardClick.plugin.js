@@ -16,8 +16,8 @@ module.exports = (() => {
                 discord_id: "333772129868972032",
                 github_username: "SpoonMcForky"
             }],
-            version: "2.0.0",
-            description: " Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)",
+            version: "2.0.1",
+            description: "Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)",
             github: "https://github.com/SpoonMcForky/BetterDiscordPlugins",
             github_raw: "https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js"
         }
