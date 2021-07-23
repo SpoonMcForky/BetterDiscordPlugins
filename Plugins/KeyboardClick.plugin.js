@@ -3,7 +3,7 @@
  * @author SpoonMcForky#8008
  * @authorId 333772129868972032
  * @description Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)
- * @version 2.0.0
+ * @version 2.0.1
  * @updateUrl https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  */
 // Thanks @ChipChaddleson#0001 for making me realize my incompetence 
@@ -73,7 +73,7 @@ module.exports = (() => {
                         var num = Math.floor(Math.random() * 3) + 1
             
                         async function click() {
-/*exceptions*/             if (e.key == "Control" || e.key == "Shift" || e.key == "Alt" || e.key == "MediaPlayPause" || e.key == "MediaNextTrack" || e.key == "MediaTrackPrevious" || e.key == "MediaStop" ) {
+                            if (e.key == "Control" || e.key == "Shift" || e.key == "Alt" || e.key == "MediaPlayPause" || e.key == "MediaNextTrack" || e.key == "MediaTrackPrevious" || e.key == "MediaStop" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowLeft" || e.key == "Arrowdown") {
                 
                             }
                             else if (e.key == "Backspace") {
