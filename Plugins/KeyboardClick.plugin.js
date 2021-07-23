@@ -73,7 +73,7 @@ module.exports = (() => {
                         var num = Math.floor(Math.random() * 3) + 1
             
                         async function click() {
-                            if (e.key == "Control" || e.key == "Shift" || e.key == "Alt") {
+/*exceptions*/             if (e.key == "Control" || e.key == "Shift" || e.key == "Alt" || e.key == "MediaPlayPause" || e.key == "MediaNextTrack" || e.key == "MediaTrackPrevious" || e.key == "MediaStop" ) {
                 
                             }
                             else if (e.key == "Backspace") {
