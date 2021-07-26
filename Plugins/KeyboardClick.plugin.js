@@ -3,8 +3,10 @@
  * @author SpoonMcForky#8008
  * @authorId 333772129868972032
  * @description Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)
- * @version 2.0.1
+ * @version 2.0.3
  * @updateUrl https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
+ * @source https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
+ * @website https://github.com/SpoonMcForky/BetterDiscordPlugins/blob/main/Plugins/KeyboardClick.plugin.js
  */
 // Thanks @ChipChaddleson#0001 for making me realize my incompetence 
 module.exports = (() => {
@@ -16,11 +18,21 @@ module.exports = (() => {
                 discord_id: "333772129868972032",
                 github_username: "SpoonMcForky"
             }],
-            version: "2.0.1",
+            version: "2.0.3",
             description: "Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)",
             github: "https://github.com/SpoonMcForky/BetterDiscordPlugins",
             github_raw: "https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js"
-        }
+        },
+        changelog: [
+            {
+                title: "v2.0.3: Added Key!",
+                type: "Changes:",
+                items: [
+                    "Added Capslock and Meta buttons (Windows Button) to list of key exceptions.",
+                    "Also added this changelog",
+                    "Please open an issue or DM me on Discord if you have any problems or would like me to add a key!"
+                ]
+        }]
     };
 
     return !global.ZeresPluginLibrary ? class {
@@ -73,7 +85,8 @@ module.exports = (() => {
                         var num = Math.floor(Math.random() * 3) + 1
             
                         async function click() {
-                            if (e.key == "Control" || e.key == "Shift" || e.key == "Alt" || e.key == "MediaPlayPause" || e.key == "MediaNextTrack" || e.key == "MediaTrackPrevious" || e.key == "MediaStop" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowLeft" || e.key == "ArrowDown") {
+//exceptions
+                            if (e.key == "Control" || e.key == "Shift" || e.key == "Alt" || e.key == "MediaPlayPause" || e.key == "MediaNextTrack" || e.key == "MediaTrackPrevious" || e.key == "MediaStop" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowLeft" || e.key == "ArrowDown" || e.key == "CapsLock" || e.key == "Meta") {
                 
                             }
                             else if (e.key == "Backspace") {
