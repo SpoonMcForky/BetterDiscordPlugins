@@ -25,14 +25,23 @@ module.exports = (() => {
         },
         changelog: [
             {
-                title: "v2.0.3: Added Key!",
+                title: "v2.0.2: Added Key!",
                 type: "Changes:",
                 items: [
                     "Added Capslock and Meta buttons (Windows Button) to list of key exceptions.",
                     "Also added this changelog",
                     "Please open an issue or DM me on Discord if you have any problems or would like me to add a key!"
                 ]
-        }]
+            },
+            {
+                title: "v2.0.3: Slight rewrite",
+                type: "Changes:",
+                items: [
+                    "Moved exceptions to an array",
+                    "Got rid of redundant functions",
+                    "Attempted to eliminate spaghetti"
+                ]}
+        ]
     };
 
     return !global.ZeresPluginLibrary ? class {
@@ -78,19 +87,35 @@ module.exports = (() => {
                     var click3 = new Audio("https://dl.dropboxusercontent.com/s/kqjn62hwk035d2w/click3.wav?raw=1");
                     var backspace = new Audio("https://dl.dropboxusercontent.com/s/lluvdpgt8n8ohm0/backspace.wav?raw=1");
                     //var enter = new Audio("https://dl.dropboxusercontent.com/s/lluvdpgt8n8ohm0/backspace.wav?raw=1");
+
+                    const keyArray =  //Exceptions
+                        [
+                            'Control',
+                            'Shift',
+                            'Alt',
+                            'MediaPlayPause',
+                            'MediaNextTrack',
+                            'MediaTrackPrevious',
+                            'MediaStop',
+                            'ArrowUp',
+                            'ArrowRight',
+                            'ArrowLeft',
+                            'ArrowDown',
+                            'CapsLock',
+                            'Meta'
+                        ]
+                    
+                    
                     document.addEventListener('keydown', clicking);
                     this.clicking = clicking
-
+                    
                     async function clicking(e) {
                         var num = Math.floor(Math.random() * 3) + 1
             
                         async function click() {
-//exceptions
-                            if (e.key == "Control" || e.key == "Shift" || e.key == "Alt" || e.key == "MediaPlayPause" || e.key == "MediaNextTrack" || e.key == "MediaTrackPrevious" || e.key == "MediaStop" || e.key == "ArrowUp" || e.key == "ArrowRight" || e.key == "ArrowLeft" || e.key == "ArrowDown" || e.key == "CapsLock" || e.key == "Meta") {
-                
+                            if (keyArray.includes(e.key)) {
                             }
-                            else if (e.key == "Backspace") {
-                                function backspaceFunc() {
+                                else if (e.key == "Backspace") {
                                     click1.pause();
                                     click1.currentTime = 0;
                                     click2.pause();
@@ -98,12 +123,9 @@ module.exports = (() => {
                                     click3.pause();
                                     click3.currentTime = 0;
                                     backspace.play(backspace)
-                                }
-                                backspaceFunc()
 
-                            }
-                            else if (num == 1) {
-                                function click() {
+                                }
+                                else if (num == 1) {
                                     click1.pause();
                                     click1.currentTime = 0;
                                     click2.pause();
@@ -112,11 +134,7 @@ module.exports = (() => {
                                     click3.currentTime = 0;
                                     click1.play(click1)
                                 }
-                                click()
-
-                            }
-                            else if (num == 2) {
-                                function clickTwo() {
+                                else if (num == 2) {
                                     click1.pause();
                                     click1.currentTime = 0;
                                     click2.pause();
@@ -125,11 +143,7 @@ module.exports = (() => {
                                     click3.currentTime = 0;
                                     click2.play(click2)
                                 }
-                                clickTwo()
-
-                            }
-                            else if (num == 3) {
-                                function clickThree() {
+                                else if (num == 3) {
                                     click1.pause();
                                     click1.currentTime = 0;
                                     click2.pause();
@@ -137,10 +151,8 @@ module.exports = (() => {
                                     click3.pause();
                                     click3.currentTime = 0;
                                     click3.play(click3)
-                                }
-                                clickThree()
 
-                            }
+                                }
                         }
                         click()
                     }
