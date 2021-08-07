@@ -42,12 +42,20 @@ module.exports = (() => {
                     "Attempted to eliminate spaghetti"
                 ]
             },
-            {
+           {
                 title: "v2.0.5: Added Exception",
                 type: "added",
                 items: [
                     "Added volume up and down keys to exception list"
                 ]}
+
+           {
+                title: "v2.0.6: Added Exception",
+                type: "fixed",
+                items: [
+                     "Fixed backspace tempo "
+                ]}
+
         ],
     };
 
@@ -125,6 +133,8 @@ module.exports = (() => {
                             if (keyArray.includes(e.key)) {
                             }
                                 else if (e.key == "Backspace") {
+                                    backspace.pause();
+                                    backspace.currentTime = 0;
                                     click1.pause();
                                     click1.currentTime = 0;
                                     click2.pause();
