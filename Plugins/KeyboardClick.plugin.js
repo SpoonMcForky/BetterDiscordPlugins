@@ -3,7 +3,7 @@
  * @author SpoonMcForky#8008
  * @authorId 333772129868972032
  * @description Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)
- * @version 2.0.6
+ * @version 2.0.7
  * @updateUrl https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @source https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @website https://github.com/SpoonMcForky/BetterDiscordPlugins/blob/main/Plugins/KeyboardClick.plugin.js
@@ -18,7 +18,7 @@ module.exports = (() => {
                 discord_id: "333772129868972032",
                 github_username: "SpoonMcForky"
             }],
-            version: "2.0.6",
+            version: "2.0.7",
             description: "Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)",
             github: "https://github.com/SpoonMcForky/BetterDiscordPlugins",
             github_raw: "https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js"
@@ -47,7 +47,7 @@ module.exports = (() => {
                 type: "added",
                 items: [
                     "Added volume up and down keys to exception list"
-                ]}
+                ]},
 
            {
                 title: "v2.0.6: Added Exception",
