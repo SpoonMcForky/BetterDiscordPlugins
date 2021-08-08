@@ -3,7 +3,7 @@
  * @author SpoonMcForky#8008
  * @authorId 333772129868972032
  * @description Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)
- * @version 2.0.7
+ * @version 2.0.8
  * @updateUrl https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @source https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @website https://github.com/SpoonMcForky/BetterDiscordPlugins/blob/main/Plugins/KeyboardClick.plugin.js
@@ -18,13 +18,14 @@ module.exports = (() => {
                 discord_id: "333772129868972032",
                 github_username: "SpoonMcForky"
             }],
-            version: "2.0.7",
+            version: "2.0.8",
             description: "Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)",
             github: "https://github.com/SpoonMcForky/BetterDiscordPlugins",
             github_raw: "https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js"
         },
-        changelog: [
+        changelogItems: [
             {
+                version: "2.0.2",
                 title: "v2.0.2: Added Key!",
                 type: "added",
                 items: [
@@ -34,6 +35,7 @@ module.exports = (() => {
                 ]
             },
             {
+                version: "2.0.3",
                 title: "v2.0.3: Slight rewrite",
                 type: "added",
                 items: [
@@ -42,21 +44,37 @@ module.exports = (() => {
                     "Attempted to eliminate spaghetti"
                 ]
             },
-           {
+            {
+                version: "2.0.5",
                 title: "v2.0.5: Added Exception",
                 type: "added",
                 items: [
                     "Added volume up and down keys to exception list"
                 ]},
 
-           {
+            {
+                version: "2.0.6",
                 title: "v2.0.6: Added Exception",
                 type: "fixed",
                 items: [
                      "Fixed backspace tempo "
-                ]}
+                ]},
+                
+            {
+                version: "2.0.8",
+                title: "v.2.0.8: Test",
+                type: "test",
+                items: [
+                    "test"
+                ]
+            }
 
         ],
+        get changelog() {
+            const item = this.changelogItems.find(item => item.version === this.version);
+            if (!item) return item;
+            return [item];
+          }
     };
 
  return !global.ZeresPluginLibrary ? class {
