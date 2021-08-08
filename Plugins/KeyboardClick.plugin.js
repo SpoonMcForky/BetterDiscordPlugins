@@ -3,7 +3,7 @@
  * @author SpoonMcForky#8008
  * @authorId 333772129868972032
  * @description Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)
- * @version 2.0.8
+ * @version 2.0.9
  * @updateUrl https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @source https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @website https://github.com/SpoonMcForky/BetterDiscordPlugins/blob/main/Plugins/KeyboardClick.plugin.js
@@ -18,11 +18,12 @@ module.exports = (() => {
                 discord_id: "333772129868972032",
                 github_username: "SpoonMcForky"
             }],
-            version: "2.0.8",
+            version: "2.0.9",
             description: "Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)",
             github: "https://github.com/SpoonMcForky/BetterDiscordPlugins",
             github_raw: "https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js"
         },
+        version: "2.0.9",
         changelogItems: [
             {
                 version: "2.0.2",
@@ -61,8 +62,8 @@ module.exports = (() => {
                 ]},
                 
             {
-                version: "2.0.8",
-                title: "v.2.0.8: Test",
+                version: "2.0.9",
+                title: "v.2.0.9: Test",
                 type: "test",
                 items: [
                     "test"
