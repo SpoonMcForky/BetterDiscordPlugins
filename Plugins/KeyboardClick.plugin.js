@@ -3,7 +3,7 @@
  * @author SpoonMcForky#8008
  * @authorId 333772129868972032
  * @description Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)
- * @version 2.0.11
+ * @version 2.1.0
  * @updateUrl https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @source https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @website https://github.com/SpoonMcForky/BetterDiscordPlugins/blob/main/Plugins/KeyboardClick.plugin.js
@@ -23,12 +23,12 @@ module.exports = (() => {
                 discord_id: '333772129868972032',
                 github_username: 'SpoonMcForky'
             }],
-            version: '2.0.11',
+            version: '2.1.0',
             description: 'Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)',
             github: 'https://github.com/SpoonMcForky/BetterDiscordPlugins',
             github_raw: 'https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js'
         },
-        version: '2.0.11',
+        version: '2.1.0',
         changelogItems: [
             {
                 version: '2.0.2',
@@ -63,36 +63,52 @@ module.exports = (() => {
                 title: 'v2.0.6: Added Exception',
                 type: 'fixed',
                 items: [
-                     'Fixed backspace tempo '
+                    'Fixed backspace tempo '
                 ]},
                 
             {
                 version: '2.0.11',
-                title: 'v.2.0.11: Added Enter Key',
+                title: 'v.2.0.11: Volume Slider',
                 type: 'added',
                 items: [
                     'Added Volume Slider',
-		    'If you got spammed with updates, Sorry.'
+                    'If you got spammed with updates, Sorry.'
                 ]
-            }
+            },
+            {
+                version: '2.1.0',
+                title: 'v.2.1.0: New Feature!',
+                type: 'added',
+                items: [
+                    'Added a settings panel for custom exceptions!',
+                    'Removed some left over code',
+                    ':)'
+                ]
 
-        ],
+            }],
         get changelog() {
             const item = this.changelogItems.find(item => item.version === this.version);
             if (!item) return item;
             return [item];
         },
         defaultConfig: [{
-			type: "slider",
-			id: "volume",
-			name: "Volume",
-			note: "Changes volume of clicks",
+            type: "slider",
+            id: "volume",
+            name: "Volume",
+            note: "Changes volume of clicks",
             value: 50,
             min: 0,
             max: 100,
             markers: Array.from(Array(11), (_, i) => 10 * i),
             stickToMarkers: true
-		}]
+        },
+            {
+            type: "textbox",
+            id: "exceptions",
+            name: "Exceptions (Requires Reload)",
+            note: "Add keys here to stop them from making a click sound. Separate keys by a comma, no space {Key1,Key2}. Letter keys are formatted like this: \"KeyA\". See the list of keys here: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code/code_values",
+            value: ",,ControlLeft,ControlRight,ShiftLeft,ShiftRight,AltLeft,AltRight,ArrowUp,ArrowRight,ArrowLeft,ArrowDown,CapsLock,MetaLeft,MetaRight,MediaPlayPause,",
+        }]
     };
 
  return !global.ZeresPluginLibrary ? class {
@@ -130,58 +146,22 @@ module.exports = (() => {
                 DiscordConstants
             } = DiscordModules;
     
-    
+
             return class clicker extends Plugin {
                 
                 onStart() {
-                    const keyArray =  //Exceptions
-                        [
-                            'Control',
-                            'Shift',
-                            'Alt',
-                            'MediaPlayPause',
-                            'MediaNextTrack',
-                            'MediaTrackPrevious',
-                            'MediaStop',
-                            'ArrowUp',
-                            'ArrowRight',
-                            'ArrowLeft',
-                            'ArrowDown',
-                            'CapsLock',
-                            'Meta',
-                            'AudioVolumeUp',
-                            'AudioVolumeDown'
-                        ];
-                    const form = document.querySelectorAll('form')
-                    form.forEach((e) => {
-                        for (let i = 0; i < e.length; i++) {
-                            e[i].addEventListener('submit', enterClick); // This is used because the event listener 'keydown' does not include 'Enter'
-                        }
-                    })
-                    async function enterClick() {
-                            enter.pause();
-                            enter.currentTime = 0;
-                            backspace.pause();
-                            backspace.currentTime = 0;
-                            click1.pause();
-                            click1.currentTime = 0;
-                            click2.pause();
-                            click2.currentTime = 0;
-                            click3.pause();
-                            click3.currentTime = 0;
-                            enter.play(enter)
-                        };
+                    var keyArray = this.createExceptions()
                     
                     document.addEventListener('keydown', clicking);
                     this.clicking = clicking;
                     
                     async function clicking(e) {
                         var num = Math.floor(Math.random() * 3) + 1 // Generate a random number, used later to determine which click sound will be played
-            
                         async function click() {
-                            if (keyArray.includes(e.key)) { // Checks the array 'keyArray', and if the condition is met, do nothing
+
+                            if (keyArray.includes(e.code)) { // Checks the array 'keyArray', and if the condition is met, do nothing
                             }
-                                else if (e.key == 'Backspace') {
+                                else if (e.code == 'Backspace') {
                                     backspace.pause();
                                     backspace.currentTime = 0;
                                     click1.pause();
@@ -227,7 +207,6 @@ module.exports = (() => {
                 }
                 stop() {
                     document.removeEventListener('keydown', this.clicking);
-                    form.removeEventListener('submit' )
                 }
                 changeVolume() {
                     click1.volume = (this.settings.volume / 100);
@@ -235,11 +214,16 @@ module.exports = (() => {
                     click3.volume = (this.settings.volume / 100);
                     backspace.volume = (this.settings.volume / 100);
                 }
+                createExceptions() {
+                    return this.settings.exceptions.split(",")
+                }
                 getSettingsPanel() {
                     const panel = this.buildSettingsPanel();
                     panel.addListener((id) => {
                         if (id == "volume") {
                             this.changeVolume()
+                        } else if (id == "exceptions") {
+                            this.createExceptions()
                         }
 
                     });
