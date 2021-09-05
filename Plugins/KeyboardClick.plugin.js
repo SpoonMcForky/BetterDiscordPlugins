@@ -3,12 +3,12 @@
  * @author SpoonMcForky#8008
  * @authorId 333772129868972032
  * @description Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)
- * @version 2.1.2
+ * @version 2.2.0
  * @updateUrl https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @source https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @website https://github.com/SpoonMcForky/BetterDiscordPlugins/blob/main/Plugins/KeyboardClick.plugin.js
  */
-// Thanks @ChipChaddleson#0001 for making me realize my incompetence
+// Thanks @ChipChaddleson#0001 and @Toaster#0110 on discord for helping with code
                     const click1 = new Audio('https://dl.dropboxusercontent.com/s/vfxrfu2u8jiq6xw/click1.wav?raw=1');
                     const click2 = new Audio('https://dl.dropboxusercontent.com/s/wtw25tzfctkpers/click2.wav?raw=1');
                     const click3 = new Audio('https://dl.dropboxusercontent.com/s/kqjn62hwk035d2w/click3.wav?raw=1');
@@ -23,12 +23,12 @@ module.exports = (() => {
                 discord_id: '333772129868972032',
                 github_username: 'SpoonMcForky'
             }],
-            version: '2.1.2',
+            version: '2.2.0',
             description: 'Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)',
             github: 'https://github.com/SpoonMcForky/BetterDiscordPlugins',
             github_raw: 'https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js'
         },
-        version: '2.1.2',
+        version: '2.2.0',
         changelogItems: [
             {
                 version: '2.0.2',
@@ -56,7 +56,8 @@ module.exports = (() => {
                 type: 'added',
                 items: [
                     'Added volume up and down keys to exception list'
-                ]},
+                ]
+            },
 
             {
                 version: '2.0.6',
@@ -64,7 +65,8 @@ module.exports = (() => {
                 type: 'fixed',
                 items: [
                     'Fixed backspace tempo '
-                ]},
+                ]
+            },
                 
             {
                 version: '2.0.11',
@@ -84,8 +86,16 @@ module.exports = (() => {
                     'Removed some left over code',
                     ':)'
                 ]
-
-            }],
+            },
+            { 
+              version: '2.2.0',
+              title: 'v2.2.0: Code Optimizations',
+              type: 'added',
+              items: [
+                'Thanks to @Toaster#0110, repetition in code is no more'
+               ]
+            }
+        ],
         get changelog() {
             const item = this.changelogItems.find(item => item.version === this.version);
             if (!item) return item;
@@ -155,52 +165,35 @@ module.exports = (() => {
                     document.addEventListener('keydown', clicking);
                     this.clicking = clicking;
                     
-                    async function clicking(e) {
+                        async function clicking(e) {
                         var num = Math.floor(Math.random() * 3) + 1 // Generate a random number, used later to determine which click sound will be played
+                        function playSound(click) {
+                            backspace.pause()
+                            backspace.currentTime = 0
+                            click1.pause()
+                            click1.currentTime = 0
+                            click2.pause()
+                            click2.currentTime = 0
+                            click3.pause()
+                            click3.currentTime = 0
+                            click.play(click)
+                        }
                         async function click() {
 
-                            if (keyArray.includes(e.code)) { // Checks the array 'keyArray', and if the condition is met, do nothing
+                            if (keyArray.includes(e.code)) // Checks the array 'keyArray', and if the condition is met, do nothing
+                                return
+                            else if (e.code == 'Backspace') {
+                                playSound(backspace)
                             }
-                                else if (e.code == 'Backspace') {
-                                    backspace.pause();
-                                    backspace.currentTime = 0;
-                                    click1.pause();
-                                    click1.currentTime = 0;
-                                    click2.pause();
-                                    click2.currentTime = 0;
-                                    click3.pause();
-                                    click3.currentTime = 0;
-                                    backspace.play(backspace)
-
-                                }
-                                else if (num == 1) {
-                                    click1.pause();
-                                    click1.currentTime = 0;
-                                    click2.pause();
-                                    click2.currentTime = 0;
-                                    click3.pause();
-                                    click3.currentTime = 0;
-                                    click1.play(click1)
-                                }
-                                else if (num == 2) {
-                                    click1.pause();
-                                    click1.currentTime = 0;
-                                    click2.pause();
-                                    click2.currentTime = 0;
-                                    click3.pause();
-                                    click3.currentTime = 0;
-                                    click2.play(click2)
-                                }
-                                else if (num == 3) {
-                                    click1.pause();
-                                    click1.currentTime = 0;
-                                    click2.pause();
-                                    click2.currentTime = 0;
-                                    click3.pause();
-                                    click3.currentTime = 0;
-                                    click3.play(click3)
-
-                                }
+                            else if (num == 1) {
+                                playSound(click1)
+                            }
+                            else if (num == 2) {
+                                playSound(click2)
+                            }
+                            else if (num == 3) {
+                                playSound(click3)
+                            }
                         }
                         click()
                     }
