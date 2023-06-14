@@ -3,7 +3,7 @@
  * @author SpoonMcForky#8008
  * @authorId 333772129868972032
  * @description Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)
- * @version 2.2.0
+ * @version 2.3.0
  * @updateUrl https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @source https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js
  * @website https://github.com/SpoonMcForky/BetterDiscordPlugins/blob/main/Plugins/KeyboardClick.plugin.js
@@ -23,12 +23,12 @@ module.exports = (() => {
                 discord_id: '333772129868972032',
                 github_username: 'SpoonMcForky'
             }],
-            version: '2.2.0',
+            version: '2.3.0',
             description: 'Plays a click sound when a button is pressed, similarily to OperaGX (uses the same sounds)',
             github: 'https://github.com/SpoonMcForky/BetterDiscordPlugins',
             github_raw: 'https://raw.githubusercontent.com/SpoonMcForky/BetterDiscordPlugins/main/Plugins/KeyboardClick.plugin.js'
         },
-        version: '2.2.0',
+        version: '2.3.0',
         changelogItems: [
             {
                 version: '2.0.2',
@@ -94,7 +94,15 @@ module.exports = (() => {
               items: [
                 'Thanks to @Toaster#0110, repetition in code is no more'
                ]
-            }
+            },
+            { 
+                version: '2.3.0',
+                title: 'v2.3.0: Added Streamer Mode',
+                type: 'added',
+                items: [
+                  'If Streamer Mode is enabled, it wont make any sound.'
+                 ]
+              }
         ],
         get changelog() {
             const item = this.changelogItems.find(item => item.version === this.version);
