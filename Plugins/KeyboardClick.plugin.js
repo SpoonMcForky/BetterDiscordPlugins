@@ -118,6 +118,13 @@ module.exports = (() => {
             name: "Exceptions (Requires Reload)",
             note: "Add keys here to stop them from making a click sound. Separate keys by a comma, no space {Key1,Key2}. Letter keys are formatted like this: \"KeyA\". Easily see key codes here: https://keycode.info",
             value: ",,ControlLeft,ControlRight,ShiftLeft,ShiftRight,AltLeft,AltRight,ArrowUp,ArrowRight,ArrowLeft,ArrowDown,CapsLock,MetaLeft,MetaRight,MediaPlayPause,",
+        },
+            {
+            type: "switch",
+            id: "streamerMode",
+            name: "Disable Sounds When Streamer Mode Is Enabled",
+            value: true,
+            enabled: false
         }]
     };
 
@@ -155,11 +162,30 @@ module.exports = (() => {
             const {
                 DiscordConstants
             } = DiscordModules;
+
+            const Dispatcher = BdApi.Webpack.getModule(m => m.dispatch && m.subscribe);
     
 
             return class clicker extends Plugin {
                 
                 onStart() {
+                    this.addClickEvent();
+                    this.changeVolume();
+                    Dispatcher.subscribe("STREAMER_MODE_UPDATE", x=>{this.onStreamerModeChange(x.value);});
+                }
+                stop() {
+                    this.removeClickEvent();
+                    Dispatcher.unsubscribe("STREAMER_MODE_UPDATE", x=>{this.onStreamerModeChange(x.value);});
+                }
+                onStreamerModeChange(status) {
+                    if(this.streamerMode()){
+                        if(status)
+                            this.removeClickEvent();
+                        else
+                            this.addClickEvent();
+                    }
+                }
+                addClickEvent() {
                     var keyArray = this.createExceptions()
                     
                     document.addEventListener('keydown', clicking);
@@ -198,7 +224,7 @@ module.exports = (() => {
                         click()
                     }
                 }
-                stop() {
+                removeClickEvent() {
                     document.removeEventListener('keydown', this.clicking);
                 }
                 changeVolume() {
@@ -209,6 +235,9 @@ module.exports = (() => {
                 }
                 createExceptions() {
                     return this.settings.exceptions.split(",")
+                }
+                streamerMode() {
+                    return this.settings.streamerMode;
                 }
                 getSettingsPanel() {
                     const panel = this.buildSettingsPanel();
